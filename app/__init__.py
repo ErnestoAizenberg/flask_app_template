@@ -1,16 +1,18 @@
 from flask import Flask
 from flask_cors import CORS
 
-from .api import api as api_blueprint
 from .errors import add_error_handlers
 
 
-def create_app():
+def create_app() -> Flask:
     app = Flask(__name__)
     CORS(app, resources={r'/*': {'origins': '*'}})
-    app.register_blueprint(api_blueprint, url_prefix='/api/v1')
-    add_error_handlers(app)
+
+    @app.route('/', methods=["GET"])
+    def read_root():
+        return render_template('index.html')
+        
     return app
 
 
-application = create_app()
+application: Flask = create_app()
