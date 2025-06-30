@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 
 from .errors import add_error_handlers
@@ -11,7 +11,7 @@ def create_app() -> Flask:
     @app.route('/', methods=["GET"])
     def read_root():
         return render_template('index.html')
-        
+    add_error_handlers(app)
     return app
 
 
