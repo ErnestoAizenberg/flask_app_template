@@ -1,5 +1,7 @@
 """Application Fabric"""
 
+__all__ == ['create_app']
+
 from flask import Flask, render_template
 from flask_cors import CORS
 
